@@ -37,4 +37,5 @@ variable "groups" {
 variable "variables" {
   description = "ArgoCD Application interpolation variables"
   type        = any
+  default     = {}
 }

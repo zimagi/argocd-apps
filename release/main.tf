@@ -1,9 +1,10 @@
 
 module "config" {
-    source      = "../config"
-    config_path = var.config_path
-    group       = var.group
-    variables   = var.variables
+    source           = "../config"
+    config_path      = var.config_path
+    values_directory = var.values_directory
+    group            = var.group
+    variables        = var.variables
 }
 
 resource "helm_release" "applications" {

@@ -5,7 +5,7 @@ module "values" {
   source = "Invicton-Labs/deepmerge/null"
   maps = [
     for file in lookup(each.value.source.helm, "values", []) :
-    yamldecode(templatefile("${var.config_path}/${file}", var.variables))
+    yamldecode(templatefile("${var.config_path}/${var.values_directory}/${file}", var.variables))
   ]
 }
 
