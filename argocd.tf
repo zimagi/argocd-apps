@@ -12,6 +12,6 @@ resource "helm_release" "argocd" {
   create_namespace = true
 
   values = fileexists(local.argocd_values_file) ? [
-    file(local.argocd_values_file)
+    templatefile(local.argocd_values_file, local.variables)
   ] : null
 }
