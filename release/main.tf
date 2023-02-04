@@ -14,10 +14,11 @@ resource "helm_release" "applications" {
   version    = var.apps_version
   namespace  = "argocd"
 
-  force_update     = false
-  recreate_pods    = false
-  reuse_values     = true
-  create_namespace = false
+  force_update      = true
+  dependency_update = true
+  reset_values      = true
+  create_namespace  = false
+  wait_for_jobs     = true
 
   values = [
     module.config.yaml
