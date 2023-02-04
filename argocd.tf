@@ -9,7 +9,7 @@ resource "helm_release" "argocd" {
   force_update      = true
   dependency_update = true
   reuse_values      = false
-  create_namespace  = false
+  create_namespace  = true
   wait_for_jobs     = true
 
   values = fileexists(local.argocd_values_file) ? [
