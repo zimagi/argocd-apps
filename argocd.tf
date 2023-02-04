@@ -8,7 +8,7 @@ resource "helm_release" "argocd" {
 
   force_update      = true
   dependency_update = true
-  reset_values      = true
+  reuse_values      = false
   create_namespace  = false
   wait_for_jobs     = true
 
