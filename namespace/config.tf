@@ -1,6 +1,6 @@
 
 resource "kubernetes_config_map" "config" {
-  for_each = var.config
+  for_each = nonsensitive(var.config)
 
   metadata {
     name        = each.key
