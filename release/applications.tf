@@ -1,6 +1,6 @@
 
 resource "kubernetes_manifest" "application" {
-  for_each = toset(local.applications)
+  for_each = local.applications
 
   computed_fields = [
     "metadata.labels",
