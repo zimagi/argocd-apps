@@ -1,6 +1,6 @@
 
 module "namespace" {
-  for_each = local.applications
+  for_each = toset(local.applications)
 
   source  = "../namespace"
   name    = each.value.name

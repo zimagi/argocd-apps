@@ -11,8 +11,8 @@ resource "kubernetes_secret" "secrets" {
 
   type        = lookup(var.secrets[each.value], "type", "Opaque")
   immutable   = lookup(var.secrets[each.value], "immutable", false)
-  data        = lookup(var.secrets[each.value], "data", {})
-  binary_data = lookup(var.secrets[each.value], "binary", {})
+  data        = sensitive(lookup(var.secrets[each.value], "data", {}))
+  binary_data = sensitive(lookup(var.secrets[each.value], "binary", {}))
 
   depends_on = [
     kubernetes_namespace.this
