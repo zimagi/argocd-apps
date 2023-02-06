@@ -40,6 +40,10 @@ No requirements.
 | <a name="input_argocd_version"></a> [argocd\_version](#input\_argocd\_version) | ArgoCD Helm chart version | `string` | `"5.19.4"` | no |
 | <a name="input_config_directory"></a> [config\_directory](#input\_config\_directory) | Configuration directory containing merged config map definitions with format: namespace(map):name(map):config(map) | `string` | `"config"` | no |
 | <a name="input_config_path"></a> [config\_path](#input\_config\_path) | Base application configuration path | `string` | n/a | yes |
+| <a name="input_default_chart"></a> [default\_chart](#input\_default\_chart) | Default ArgoCD application Helm chart from Helm repository | `string` | `"application"` | no |
+| <a name="input_default_path"></a> [default\_path](#input\_default\_path) | Default ArgoCD application Helm chart from Git repository path | `string` | `null` | no |
+| <a name="input_default_repository"></a> [default\_repository](#input\_default\_repository) | Default ArgoCD application repository (Git or Helm) | `string` | `"https://charts.zimagi.com"` | no |
+| <a name="input_default_version"></a> [default\_version](#input\_default\_version) | Default ArgoCD application Helm chart version from Helm repository | `string` | `"0.0.1"` | no |
 | <a name="input_domain"></a> [domain](#input\_domain) | Platform domain | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Platform Environment | `string` | n/a | yes |
 | <a name="input_groups"></a> [groups](#input\_groups) | Ordered collections of ArgoCD Application configurations (up to 10 groups supported) | `list` | n/a | yes |
