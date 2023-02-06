@@ -1,6 +1,6 @@
 
 resource "kubernetes_secret" "secrets" {
-  for_each = toset([ for name, config in var.secrets : name ])
+  for_each = nonsensitive(toset([ for name, config in var.secrets : name ]))
 
   metadata {
     name        = each.value
