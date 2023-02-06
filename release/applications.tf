@@ -6,7 +6,7 @@ resource "kubectl_manifest" "application" {
   wait_for_rollout = true
   wait             = true
 
-  yaml_body = yamlencode({
+  yaml_body = yamlencode(nonsensitive({
     apiVersion = "argoproj.io/v1alpha1"
     kind       = "Application"
 
@@ -63,7 +63,7 @@ resource "kubectl_manifest" "application" {
         namespace = var.group
       }
     }
-  })
+  }))
 
   depends_on = [
     kubectl_manifest.project
