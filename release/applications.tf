@@ -51,10 +51,10 @@ resource "kubectl_manifest" "application" {
         helm = {
           releaseName     = lookup(each.value, "release", each.value.name)
           passCredentials = lookup(each.value, "pass_credentials", false)
-          values          = fileexists("${local.values_path}/${each.value.name}.yaml") ? templatefile(
+          values          = fileexists("${local.values_path}/${each.value.name}.yaml") ? nonsensitive(templatefile(
             "${local.values_path}/${each.value.name}.yaml",
             var.variables
-          ) : ""
+          )) : ""
         }
       }
 
