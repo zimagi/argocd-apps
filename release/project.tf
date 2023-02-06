@@ -5,7 +5,7 @@ resource "kubectl_manifest" "project" {
   wait_for_rollout = true
   wait             = true
 
-  yaml_body = yamlencode(nonsensitive({
+  yaml_body = yamlencode({
     apiVersion = "argoproj.io/v1alpha1"
     kind       = "AppProject"
 
@@ -29,7 +29,7 @@ resource "kubectl_manifest" "project" {
         }
       ]
     }
-  }))
+  })
 
   depends_on = [
     module.namespace
