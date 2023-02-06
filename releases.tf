@@ -10,7 +10,9 @@ module "release_0" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[0]
+  group       = var.groups[0]
+  permissions = lookup(var.permissions, var.groups[0], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
@@ -32,7 +34,9 @@ module "release_1" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[1]
+  group       = var.groups[1]
+  permissions = lookup(var.permissions, var.groups[1], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
@@ -54,7 +58,9 @@ module "release_2" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[2]
+  group       = var.groups[2]
+  permissions = lookup(var.permissions, var.groups[2], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
@@ -76,7 +82,9 @@ module "release_3" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[3]
+  group       = var.groups[3]
+  permissions = lookup(var.permissions, var.groups[3], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
@@ -98,7 +106,9 @@ module "release_4" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[4]
+  group       = var.groups[4]
+  permissions = lookup(var.permissions, var.groups[4], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
@@ -120,7 +130,9 @@ module "release_5" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[5]
+  group       = var.groups[5]
+  permissions = lookup(var.permissions, var.groups[5], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
@@ -142,7 +154,9 @@ module "release_6" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[6]
+  group       = var.groups[6]
+  permissions = lookup(var.permissions, var.groups[6], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
@@ -164,7 +178,9 @@ module "release_7" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[7]
+  group       = var.groups[7]
+  permissions = lookup(var.permissions, var.groups[7], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
@@ -186,7 +202,9 @@ module "release_8" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[8]
+  group       = var.groups[8]
+  permissions = lookup(var.permissions, var.groups[8], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
@@ -208,7 +226,9 @@ module "release_9" {
   config_path      = var.config_path
   values_directory = var.values_directory
 
-  group     = var.groups[9]
+  group       = var.groups[9]
+  permissions = lookup(var.permissions, var.groups[9], var.default_permissions)
+
   secrets   = local.secrets
   config    = local.config
   variables = local.variables

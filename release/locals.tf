@@ -33,15 +33,30 @@ locals {
       finalizers  = var.cascade_delete ? ["resources-finalizer.argocd.argoproj.io"] : []
     }
     spec = {
-      roles : [
+      sourceRepos  = ["*"]
+      destinations = [
+        {
+          name      = "in-cluster"
+          namespace = "*"
+          server    = "https://kubernetes.default.svc"
+        }
+      ]
+      clusterResourceWhitelist = [
+        {
+          group = "*"
+          kind  = "*"
+        }
+      ]
+
+      roles = [
         for permission in var.permissions : {
-          name : permission["name"],
-          description : permission["description"],
-          policies : [
+          name        = permission["name"],
+          description = permission["description"],
+          policies    = [
             for policy in permission["policies"] :
             "p, proj:${var.group}:${permission["name"]}, ${policy["resource"]}, ${policy["action"]}, ${var.group}/${policy["object"]}, allow"
           ],
-          groups : permission["groups"]
+          groups = permission["groups"]
         }
       ]
     }

@@ -54,6 +54,36 @@ variable "argocd_version" {
   default     = "5.19.4"
 }
 
+variable "default_permissions" {
+  type = list(object({
+    name : string
+    description : string
+    policies : list(object({
+      resource : string
+      action : string
+      object : string
+    }))
+    groups : list(string)
+  }))
+  description = "ArgoCD default roles and policies"
+  default     = []
+}
+
+variable "permissions" {
+  type = map(list(object({
+    name : string
+    description : string
+    policies : list(object({
+      resource : string
+      action : string
+      object : string
+    }))
+    groups : list(string)
+  })))
+  description = "ArgoCD roles and policies (keyed by group)"
+  default     = {}
+}
+
 #
 # Application variables
 #
