@@ -133,3 +133,20 @@ variable "destination_server" {
   description = "Destination cluster server url"
   default     = "https://kubernetes.default.svc"
 }
+
+variable "default_repository" {
+  type        = string
+  description = "Default ArgoCD application repository (Git or Helm)"
+}
+variable "default_chart" {
+  type        = string
+  description = "Default ArgoCD application Helm chart from Helm repository"
+}
+variable "default_path" {
+  type        = string
+  description = "Default ArgoCD application Helm chart from Git repository path"
+}
+variable "default_version" {
+  type        = string
+  description = "Default ArgoCD application Helm chart version from Helm repository"
+}

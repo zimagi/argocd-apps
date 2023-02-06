@@ -15,6 +15,11 @@ module "release_0" {
   config    = local.config
   variables = local.variables
 
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
+
   depends_on = [
     helm_release.argocd
   ]
@@ -31,6 +36,11 @@ module "release_1" {
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
+
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
 
   depends_on = [
     module.release_0
@@ -49,6 +59,11 @@ module "release_2" {
   config    = local.config
   variables = local.variables
 
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
+
   depends_on = [
     module.release_1
   ]
@@ -65,6 +80,11 @@ module "release_3" {
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
+
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
 
   depends_on = [
     module.release_2
@@ -83,6 +103,11 @@ module "release_4" {
   config    = local.config
   variables = local.variables
 
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
+
   depends_on = [
     module.release_3
   ]
@@ -99,6 +124,11 @@ module "release_5" {
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
+
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
 
   depends_on = [
     module.release_4
@@ -117,6 +147,11 @@ module "release_6" {
   config    = local.config
   variables = local.variables
 
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
+
   depends_on = [
     module.release_5
   ]
@@ -133,6 +168,11 @@ module "release_7" {
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
+
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
 
   depends_on = [
     module.release_6
@@ -151,6 +191,11 @@ module "release_8" {
   config    = local.config
   variables = local.variables
 
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
+
   depends_on = [
     module.release_7
   ]
@@ -167,6 +212,11 @@ module "release_9" {
   secrets   = local.secrets
   config    = local.config
   variables = local.variables
+
+  default_repository = var.default_repository
+  default_chart      = var.default_chart
+  default_path       = var.default_path
+  default_version    = var.default_version
 
   depends_on = [
     module.release_8

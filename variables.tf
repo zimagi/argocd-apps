@@ -53,3 +53,27 @@ variable "argocd_version" {
   type        = string
   default     = "5.19.4"
 }
+
+#
+# Application variables
+#
+variable "default_repository" {
+  type        = string
+  description = "Default ArgoCD application repository (Git or Helm)"
+  default     = "https://charts.zimagi.com"
+}
+variable "default_chart" {
+  type        = string
+  description = "Default ArgoCD application Helm chart from Helm repository"
+  default     = "application"
+}
+variable "default_path" {
+  type        = string
+  description = "Default ArgoCD application Helm chart from Git repository path"
+  default     = null
+}
+variable "default_version" {
+  type        = string
+  description = "Default ArgoCD application Helm chart version from Helm repository"
+  default     = "0.0.1"
+}

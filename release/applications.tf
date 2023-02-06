@@ -50,10 +50,10 @@ resource "kubernetes_manifest" "application" {
       }
 
       source = {
-        repoURL        = each.value.repository
-        chart          = lookup(each.value, "chart", null) # Helm Repository only
-        path           = lookup(each.value, "path", null)  # Git Repository only
-        targetRevision = each.value.version
+        repoURL        = lookup(each.value, "repository", var.default_repository)
+        chart          = lookup(each.value, "chart", var.default_chart) # Helm Repository only
+        path           = lookup(each.value, "path", var.default_path)  # Git Repository only
+        targetRevision = lookup(each.value, "version", var.default_version)
 
         helm = {
           releaseName     = lookup(each.value, "release", each.value.name)
