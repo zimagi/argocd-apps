@@ -1,19 +1,12 @@
 
-resource "kubernetes_manifest" "application" {
+resource "kubectl_manifest" "application" {
   for_each = local.application_index
 
-  computed_fields = [
-    "metadata.labels",
-    "metadata.annotations",
-    "metadata.finalizers",
-    "spec.source.helm.version"
-  ]
+  validate_schema  = true
+  wait_for_rollout = true
+  wait             = true
 
-  field_manager {
-    force_conflicts = true
-  }
-
-  manifest = {
+  yaml_body = yamlencode({
     apiVersion = "argoproj.io/v1alpha1"
     kind       = "Application"
 
@@ -70,9 +63,9 @@ resource "kubernetes_manifest" "application" {
         namespace = var.group
       }
     }
-  }
+  })
 
   depends_on = [
-    kubernetes_manifest.project
+    kubectl_manifest.project
   ]
 }

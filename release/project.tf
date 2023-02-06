@@ -1,13 +1,11 @@
 
-resource "kubernetes_manifest" "project" {
+resource "kubectl_manifest" "project" {
 
-  computed_fields = [
-    "metadata.labels",
-    "metadata.annotations",
-    "metadata.finalizers"
-  ]
+  validate_schema  = true
+  wait_for_rollout = true
+  wait             = true
 
-  manifest = {
+  yaml_body = yamlencode({
     apiVersion = "argoproj.io/v1alpha1"
     kind       = "AppProject"
 
@@ -31,7 +29,7 @@ resource "kubernetes_manifest" "project" {
         }
       ]
     }
-  }
+  })
 
   depends_on = [
     module.namespace
