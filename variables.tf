@@ -1,16 +1,32 @@
 
-variable "domain" {
+#
+# System variables
+#
+variable "domain" { # CI/CD global config
   description = "Platform domain"
   type        = string
 }
-variable "environment" {
+variable "environment" { # CI/CD pipeline config
   description = "Platform Environment"
   type        = string
 }
 
-variable "config_path" {
+#
+# Filesystem variables
+#
+variable "config_path" { # CI/CD project directory
   description = "Base application configuration path"
   type        = string
+}
+variable "secrets_directory" {
+  description = "Secrets directory containing merged secrets definitions with format: namespace(map):name(map):config(map)"
+  type        = string
+  default     = "secrets"
+}
+variable "config_directory" {
+  description = "Configuration directory containing merged config map definitions with format: namespace(map):name(map):config(map)"
+  type        = string
+  default     = "config"
 }
 variable "values_directory" {
   description = "Helm values directory within the base application configuration path (config_path)"
@@ -18,17 +34,9 @@ variable "values_directory" {
   default     = "values"
 }
 
-variable "argocd_version" {
-  description = "ArgoCD Helm chart version"
-  type        = string
-  default     = "5.19.4"
-}
-variable "argocd_apps_version" {
-  description = "ArgoCD Applications Helm chart version"
-  type        = string
-  default     = "0.1.24"
-}
-
+#
+# ArgoCD variables
+#
 variable "groups" {
   description = "Ordered collections of ArgoCD Application configurations (up to 10 groups supported)"
   type        = list
@@ -38,4 +46,10 @@ variable "variables" {
   description = "ArgoCD Application interpolation variables"
   type        = any
   default     = {}
+}
+
+variable "argocd_version" {
+  description = "ArgoCD Helm chart version"
+  type        = string
+  default     = "5.19.4"
 }

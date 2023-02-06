@@ -9,9 +9,10 @@ module "release_0" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[0]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
@@ -25,9 +26,10 @@ module "release_1" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[1]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
@@ -41,9 +43,10 @@ module "release_2" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[2]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
@@ -57,9 +60,10 @@ module "release_3" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[3]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
@@ -73,9 +77,10 @@ module "release_4" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[4]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
@@ -89,9 +94,10 @@ module "release_5" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[5]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
@@ -105,9 +111,10 @@ module "release_6" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[6]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
@@ -121,9 +128,10 @@ module "release_7" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[7]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
@@ -137,9 +145,10 @@ module "release_8" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[8]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
@@ -153,9 +162,10 @@ module "release_9" {
   source           = "./release"
   config_path      = var.config_path
   values_directory = var.values_directory
-  apps_version     = var.argocd_apps_version
 
   group     = var.groups[9]
+  secrets   = local.secrets
+  config    = local.config
   variables = local.variables
 
   depends_on = [
