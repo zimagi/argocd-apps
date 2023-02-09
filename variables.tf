@@ -11,12 +11,6 @@ variable "environment" { # CI/CD pipeline config
   type        = string
 }
 
-variable "kube_config" {
-  description = "Kubernetes cluster credential file (~/.kube/config)."
-  type        = string
-  default     = "~/.kube/config"
-}
-
 #
 # ArgoCD variables
 #

@@ -1,9 +1,4 @@
 
-variable "kube_config" {
-  description = "Kubernetes cluster credential file (~/.kube/config)"
-  type        = string
-}
-
 variable "name" {
   description = "ArgoCD Project name"
   type        = string
