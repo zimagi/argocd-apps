@@ -1,21 +1,16 @@
 
-#
-# Configuration and secret data
-#
 locals {
-  secrets = sensitive([
-    for name, config in var.secrets :
-      {
-        name = name
-        value = config
-      }
-  ])
+  secrets_path = "${var.path}/secrets.yaml"
 
-  config = [
-    for name, config in var.config :
-      {
-        name = name
-        value = config
-      }
-  ]
+  secrets = fileexists(local.secrets_path) ? [
+    sensitive(templatefile(local.secrets_path, var.variables))
+  ] : {}
+}
+
+locals {
+  config_path = "${var.path}/config.yaml"
+
+  config = fileexists(local.config_path) ? [
+    nonsensitive(templatefile(local.config_path, var.variables))
+  ] : {}
 }

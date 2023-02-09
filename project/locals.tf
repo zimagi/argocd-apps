@@ -3,12 +3,10 @@
 # Configuration and application data
 #
 locals {
-  values_path = "${var.config_path}/${var.values_directory}"
-
-  applications = [
-    for file in fileset(var.config_path, "${var.group}/*.yaml") :
-    yamldecode(templatefile("${var.config_path}/${file}", var.variables))
-  ]
+  applications = {
+    for file in fileset(var.project_path, "*/info.yaml") :
+    dirname("${var.project_path}/${file}") => yamldecode(templatefile("${var.project_path}/${file}", var.variables))
+  }
 }
 
 #
@@ -23,7 +21,7 @@ locals {
     kind       = "AppProject"
 
     metadata = {
-      name        = var.group
+      name        = var.name
       namespace   = var.argocd_namespace
       labels      = var.labels
       annotations = var.annotations
@@ -51,7 +49,7 @@ locals {
           description = permission["description"],
           policies    = [
             for policy in permission["policies"] :
-            "p, proj:${var.group}:${permission["name"]}, ${policy["resource"]}, ${policy["action"]}, ${var.group}/${policy["object"]}, allow"
+            "p, proj:${var.name}:${permission["name"]}, ${policy["resource"]}, ${policy["action"]}, ${var.name}/${policy["object"]}, allow"
           ],
           groups = permission["groups"]
         }
@@ -63,7 +61,7 @@ locals {
   # ArgoCD Application
   #
   application_manifests = {
-    for config in local.applications :
+    for path, config in local.applications :
       config.name => {
         apiVersion = "argoproj.io/v1alpha1"
         kind       = "Application"
@@ -76,7 +74,7 @@ locals {
           finalizers  = var.cascade_delete == true ? ["resources-finalizer.argocd.argoproj.io"] : []
         }
         spec = {
-          project              = var.group
+          project              = var.name
           ignoreDifferences    = lookup(config, "ignore_differences", var.ignore_differences)
           revisionHistoryLimit = lookup(config, "revision_history_limit", var.revision_history_limit)
 
@@ -109,10 +107,10 @@ locals {
             helm = {
               releaseName     = lookup(config, "release", config.name)
               passCredentials = lookup(config, "pass_credentials", false)
-              values          = fileexists("${local.values_path}/${config.name}.yaml") ? templatefile(
-                "${local.values_path}/${config.name}.yaml",
-                var.variables
-              ) : ""
+              values          = fileexists("${path}/values.yaml") ? try(
+                nonsensitive(templatefile("${path}/values.yaml", var.variables)),
+                templatefile("${path}/values.yaml", var.variables)
+               ) : ""
             }
           }
 

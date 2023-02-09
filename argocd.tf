@@ -1,9 +1,11 @@
 
 module "argocd" {
-  source  = "./namespace"
-  name    = local.argocd_name
-  secrets = lookup(local.secrets, local.argocd_name, {})
-  config  = lookup(local.config, local.argocd_name, {})
+  source      = "./namespace"
+  kube_config = var.kube_config
+
+  name        = local.argocd_name
+  path        = var.argocd_config_path
+  variables   = local.variables
 }
 
 resource "helm_release" "argocd" {
@@ -20,7 +22,7 @@ resource "helm_release" "argocd" {
   wait_for_jobs     = true
 
   values = fileexists(local.argocd_values_file) ? [
-    templatefile(local.argocd_values_file, local.variables)
+    nonsensitive(templatefile(local.argocd_values_file, local.variables))
   ] : null
 
   depends_on = [

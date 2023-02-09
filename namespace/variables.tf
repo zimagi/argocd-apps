@@ -1,6 +1,15 @@
 
+variable "kube_config" {
+  description = "Kubernetes cluster credential file (~/.kube/config)."
+  type        = string
+}
+
 variable "name" {
   description = "Kubernetes namespace name"
+  type        = string
+}
+variable "path" {
+  description = "Project path that contains secrets and config files"
   type        = string
 }
 
@@ -15,13 +24,7 @@ variable "annotations" {
   default     = {}
 }
 
-variable "secrets" {
-  description = "Collection of namespaced secrets to manage for cluster (outside of values files)"
+variable "variables" {
+  description = "Interpolation variables"
   type        = any
-  default     = {}
-}
-variable "config" {
-  description = "Collection of namespaced config maps to manage for cluster"
-  type        = any
-  default     = {}
 }

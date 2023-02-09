@@ -1,25 +1,16 @@
 
-variable "config_path" {
-  description = "Base configuration path"
-  type        = string
-}
-variable "values_directory" {
-  description = "Helm values directory within the base application configuration path (config_path)"
+variable "kube_config" {
+  description = "Kubernetes cluster credential file (~/.kube/config)"
   type        = string
 }
 
-variable "group" {
-  description = "ArgoCD Application group name"
+variable "name" {
+  description = "ArgoCD Project name"
   type        = string
 }
-
-variable "secrets" {
-  description = "Collection of namespaced secrets to manage for cluster (outside of values files)"
-  type        = any
-}
-variable "config" {
-  description = "Collection of namespaced config maps to manage for cluster"
-  type        = any
+variable "project_path" {
+  description = "Project configuration path"
+  type        = string
 }
 
 variable "variables" {
