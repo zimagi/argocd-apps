@@ -6,10 +6,9 @@ locals {
     yamldecode(templatefile(local.secrets_path, var.variables))
   ) : null
 
-  secret_names = toset([
+  secret_names = toset(local.secrets != null ? [
     for name, config in local.secrets : name
-    if local.secrets != null
-  ])
+  ] : [])
 }
 
 locals {
@@ -19,8 +18,7 @@ locals {
     yamldecode(templatefile(local.config_path, var.variables))
   ) : null
 
-  config_names = toset([
+  config_names = toset(local.config != null ? [
     for name, config in local.config : name
-    if local.config != null
-  ])
+  ] : [])
 }
