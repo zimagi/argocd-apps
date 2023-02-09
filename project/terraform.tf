@@ -7,10 +7,3 @@ terraform {
     }
   }
 }
-
-#
-# Kubernetes provider setup
-#
-provider "kubectl" {
-  config_path = var.kube_config
-}
