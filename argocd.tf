@@ -1,7 +1,6 @@
 
 module "argocd" {
   source      = "./namespace"
-  kube_config = var.kube_config
 
   name        = local.argocd_name
   path        = var.argocd_config_path
