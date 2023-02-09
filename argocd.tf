@@ -1,10 +1,10 @@
 
-# module "argocd" {
-#   source  = "./namespace"
-#   name    = local.argocd_name
-#   secrets = lookup(local.secrets, local.argocd_name, {})
-#   config  = lookup(local.config, local.argocd_name, {})
-# }
+module "argocd" {
+  source  = "./namespace"
+  name    = local.argocd_name
+  secrets = lookup(local.secrets, local.argocd_name, {})
+  config  = lookup(local.config, local.argocd_name, {})
+}
 
 resource "helm_release" "argocd" {
   name       = local.argocd_name
@@ -23,7 +23,7 @@ resource "helm_release" "argocd" {
     templatefile(local.argocd_values_file, local.variables)
   ] : null
 
-  # depends_on = [
-  #   module.argocd
-  # ]
+  depends_on = [
+    module.argocd
+  ]
 }

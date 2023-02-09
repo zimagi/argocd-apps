@@ -1,17 +1,17 @@
 
 resource "kubernetes_config_map" "config" {
-  for_each = nonsensitive(var.config)
+  count = length(local.config)
 
   metadata {
-    name        = each.key
+    name        = local.config[count.index].name
     namespace   = var.name
-    labels      = lookup(each.value, "labels", {})
-    annotations = lookup(each.value, "annotations", {})
+    labels      = lookup(local.config[count.index].value, "labels", {})
+    annotations = lookup(local.config[count.index].value, "annotations", {})
   }
 
-  immutable   = lookup(each.value, "immutable", false)
-  data        = lookup(each.value, "data", {})
-  binary_data = lookup(each.value, "binary", {})
+  immutable   = lookup(local.config[count.index].value, "immutable", false)
+  data        = lookup(local.config[count.index].value, "data", {})
+  binary_data = lookup(local.config[count.index].value, "binary", {})
 
   depends_on = [
     kubernetes_namespace.this

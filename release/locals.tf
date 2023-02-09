@@ -9,9 +9,6 @@ locals {
     for file in fileset(var.config_path, "${var.group}/*.yaml") :
     yamldecode(templatefile("${var.config_path}/${file}", var.variables))
   ]
-  application_index = nonsensitive({
-    for config in local.applications : config.name => config
-  })
 }
 
 #
@@ -66,13 +63,13 @@ locals {
   # ArgoCD Application
   #
   application_manifests = {
-    for name, config in local.application_index :
-      name => {
+    for config in local.applications :
+      config.name => {
         apiVersion = "argoproj.io/v1alpha1"
         kind       = "Application"
 
         metadata = {
-          name        = name
+          name        = config.name
           namespace   = var.argocd_namespace
           labels      = merge(var.labels, lookup(config, "labels", {}))
           annotations = merge(var.annotations, lookup(config, "annotations", {}))
@@ -110,10 +107,10 @@ locals {
             targetRevision = lookup(config, "version", var.default_version)
 
             helm = {
-              releaseName     = lookup(config, "release", name)
+              releaseName     = lookup(config, "release", config.name)
               passCredentials = lookup(config, "pass_credentials", false)
-              values          = fileexists("${local.values_path}/${name}.yaml") ? templatefile(
-                "${local.values_path}/${name}.yaml",
+              values          = fileexists("${local.values_path}/${config.name}.yaml") ? templatefile(
+                "${local.values_path}/${config.name}.yaml",
                 var.variables
               ) : ""
             }
@@ -121,7 +118,7 @@ locals {
 
           destination = {
             server    = lookup(config, "destination_server", var.destination_server)
-            namespace = name
+            namespace = config.name
           }
         }
       }

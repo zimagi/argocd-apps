@@ -1,14 +1,14 @@
 
 resource "kubectl_manifest" "application" {
-  for_each = local.application_index
+  count = length(local.applications)
 
   validate_schema  = true
   wait_for_rollout = true
   wait             = true
 
   yaml_body = yamlencode(try(
-    nonsensitive(local.application_manifests[each.key]),
-    local.application_manifests[each.key]
+    nonsensitive(local.application_manifests[local.applications[count.index].name]),
+    local.application_manifests[local.applications[count.index].name]
   ))
 
   depends_on = [

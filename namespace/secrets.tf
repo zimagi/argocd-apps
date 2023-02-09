@@ -1,18 +1,18 @@
 
 resource "kubernetes_secret" "secrets" {
-  for_each = nonsensitive(toset([ for name, config in var.secrets : name ]))
+  count = length(local.secrets)
 
   metadata {
-    name        = each.value
+    name        = local.secrets[count.index].name
     namespace   = var.name
-    labels      = lookup(var.secrets[each.value], "labels", {})
-    annotations = lookup(var.secrets[each.value], "annotations", {})
+    labels      = lookup(local.secrets[count.index].value, "labels", {})
+    annotations = lookup(local.secrets[count.index].value, "annotations", {})
   }
 
-  type        = lookup(var.secrets[each.value], "type", "Opaque")
-  immutable   = lookup(var.secrets[each.value], "immutable", false)
-  data        = sensitive(lookup(var.secrets[each.value], "data", {}))
-  binary_data = sensitive(lookup(var.secrets[each.value], "binary", {}))
+  type        = lookup(local.secrets[count.index].value, "type", "Opaque")
+  immutable   = lookup(local.secrets[count.index].value, "immutable", false)
+  data        = sensitive(lookup(local.secrets[count.index].value, "data", {}))
+  binary_data = sensitive(lookup(local.secrets[count.index].value, "binary", {}))
 
   depends_on = [
     kubernetes_namespace.this
