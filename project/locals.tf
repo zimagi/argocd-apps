@@ -52,26 +52,9 @@ locals {
         }
       ]
 
-      roles = flatten(concat([
-        for role_name, config in var.global_roles : {
-          name        = role_name,
-          description = config.description,
-          policies = flatten([
-            for resource, policy in config.policies : [
-              for action in policy.actions : [
-                for obj in lookup(policy, "objects", ["*"]) :
-                lookup(policy, "resource", resource) == "applications"
-                ? "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${var.name}/${obj}, allow"
-                : "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${obj}, allow"
-              ]
-            ]
-          ]),
-          groups = lookup(var.role_groups, role_name, [])
-        }
-        if var.global_roles != null
-        ], [
+      roles = concat([
         for app_name, app_config in local.roles : [
-          for role_name, config in app_config : {
+          for role_name, config in coalesce(app_config, {}) : {
             name        = role_name,
             description = config.description,
             policies = flatten([
@@ -86,9 +69,24 @@ locals {
             ]),
             groups = lookup(var.role_groups, role_name, [])
           }
-          if app_config != null
         ]
-      ]))
+      ], [
+        for role_name, config in coalesce(var.global_roles, {}) : {
+          name        = role_name,
+          description = config.description,
+          policies = flatten([
+            for resource, policy in config.policies : [
+              for action in policy.actions : [
+                for obj in lookup(policy, "objects", ["*"]) :
+                lookup(policy, "resource", resource) == "applications"
+                ? "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${var.name}/${obj}, allow"
+                : "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${obj}, allow"
+              ]
+            ]
+          ]),
+          groups = lookup(var.role_groups, role_name, [])
+        }
+      ])
     }
   }
 
