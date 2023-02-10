@@ -86,8 +86,8 @@ locals {
             ]),
             groups = lookup(var.role_groups, role_name, [])
           }
+          if app_config != null
         ]
-        if local.roles != null
       ]))
     }
   }
