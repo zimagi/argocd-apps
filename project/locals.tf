@@ -60,10 +60,9 @@ locals {
             policies = flatten([
               for resource, policy in config.policies : [
                 for action in policy.actions : [
-                  for obj in lookup(policy, "objects", ["*"]) :
                   lookup(policy, "resource", resource) == "applications"
-                  ? "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${var.name}/${obj}, allow"
-                  : "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${obj}, allow"
+                  ? "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${var.name}/${app_name}, allow"
+                  : "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${app_name}, allow"
                 ]
               ]
             ]),
