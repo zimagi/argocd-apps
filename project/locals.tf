@@ -52,7 +52,7 @@ locals {
         }
       ]
 
-      roles = concat([
+      roles = flatten(concat([
         for app_name, app_config in local.roles : [
           for role_name, config in coalesce(app_config, {}) : {
             name        = role_name,
@@ -86,7 +86,7 @@ locals {
           ]),
           groups = lookup(var.role_groups, role_name, [])
         }
-      ])
+      ]))
     }
   }
 
