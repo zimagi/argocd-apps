@@ -33,38 +33,14 @@ variable "project_sequence" {
   type        = list
 }
 
+variable "role_groups" {
+  type        = map(list(string))
+  description = "ArgoCD Role group membership index"
+  default     = {}
+}
 variable "variables" {
   description = "ArgoCD Application interpolation variables"
   type        = any
-  default     = {}
-}
-
-variable "default_permissions" {
-  type = list(object({
-    name : string
-    description : string
-    policies : list(object({
-      resource : string
-      action : string
-      object : string
-    }))
-    groups : list(string)
-  }))
-  description = "ArgoCD default roles and policies"
-  default     = []
-}
-variable "permissions" {
-  type = map(list(object({
-    name : string
-    description : string
-    policies : list(object({
-      resource : string
-      action : string
-      object : string
-    }))
-    groups : list(string)
-  })))
-  description = "ArgoCD roles and policies (keyed by group)"
   default     = {}
 }
 

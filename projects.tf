@@ -9,7 +9,8 @@ module "project_0" {
   source       = "./project"
   name         = var.project_sequence[0]
   project_path = "${var.project_path}/${var.project_sequence[0]}"
-  permissions  = lookup(var.permissions, var.project_sequence[0], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 
@@ -29,7 +30,8 @@ module "project_1" {
   source       = "./project"
   name         = var.project_sequence[1]
   project_path = "${var.project_path}/${var.project_sequence[1]}"
-  permissions  = lookup(var.permissions, var.project_sequence[1], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 
@@ -49,7 +51,8 @@ module "project_2" {
   source       = "./project"
   name         = var.project_sequence[2]
   project_path = "${var.project_path}/${var.project_sequence[2]}"
-  permissions  = lookup(var.permissions, var.project_sequence[2], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 
@@ -69,7 +72,8 @@ module "project_3" {
   source       = "./project"
   name         = var.project_sequence[3]
   project_path = "${var.project_path}/${var.project_sequence[3]}"
-  permissions  = lookup(var.permissions, var.project_sequence[3], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 
@@ -89,7 +93,8 @@ module "project_4" {
   source       = "./project"
   name         = var.project_sequence[4]
   project_path = "${var.project_path}/${var.project_sequence[4]}"
-  permissions  = lookup(var.permissions, var.project_sequence[4], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 
@@ -109,7 +114,8 @@ module "project_5" {
   source       = "./project"
   name         = var.project_sequence[5]
   project_path = "${var.project_path}/${var.project_sequence[5]}"
-  permissions  = lookup(var.permissions, var.project_sequence[5], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 
@@ -129,7 +135,8 @@ module "project_6" {
   source       = "./project"
   name         = var.project_sequence[6]
   project_path = "${var.project_path}/${var.project_sequence[6]}"
-  permissions  = lookup(var.permissions, var.project_sequence[6], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 
@@ -149,7 +156,8 @@ module "project_7" {
   source       = "./project"
   name         = var.project_sequence[7]
   project_path = "${var.project_path}/${var.project_sequence[7]}"
-  permissions  = lookup(var.permissions, var.project_sequence[7], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 
@@ -169,7 +177,8 @@ module "project_8" {
   source       = "./project"
   name         = var.project_sequence[8]
   project_path = "${var.project_path}/${var.project_sequence[8]}"
-  permissions  = lookup(var.permissions, var.project_sequence[8], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 
@@ -189,7 +198,8 @@ module "project_9" {
   source       = "./project"
   name         = var.project_sequence[9]
   project_path = "${var.project_path}/${var.project_sequence[9]}"
-  permissions  = lookup(var.permissions, var.project_sequence[9], var.default_permissions)
+  global_roles = local.global_roles
+  role_groups  = var.role_groups
 
   variables = local.variables
 

@@ -24,19 +24,16 @@ variable "cascade_delete" {
   description = "Enable / disable cascade deletion of project resources"
   default     = true
 }
-variable "permissions" {
-  type = list(object({
-    name : string
-    description : string
-    policies : list(object({
-      resource : string
-      action : string
-      object : string
-    }))
-    groups : list(string)
-  }))
-  description = "ArgoCD roles and policies for group"
-  default     = []
+
+variable "global_roles" {
+  type        = any
+  description = "Global ArgoCD roles across all projects"
+  default     = {}
+}
+variable "role_groups" {
+  type        = map(list(string))
+  description = "ArgoCD Role group membership index"
+  default     = {}
 }
 
 variable "labels" {
