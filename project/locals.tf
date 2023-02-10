@@ -52,23 +52,25 @@ locals {
         }
       ]
 
-      roles = [
-        for role_name, config in local.roles : {
-          name        = role_name,
-          description = config.description,
-          policies = flatten([
-            for resource, policy in config.policies : [
-              for action in policy.actions : [
-                for obj in lookup(policy, "objects", ["*"]) :
-                lookup(policy, "resource", resource) == "applications"
-                ? "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${var.name}/${obj}, allow"
-                : "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${obj}, allow"
+      roles = flatten([
+        for app_name, app_config in local.roles : [
+          for role_name, config in app_config : {
+            name        = role_name,
+            description = config.description,
+            policies = flatten([
+              for resource, policy in config.policies : [
+                for action in policy.actions : [
+                  for obj in lookup(policy, "objects", ["*"]) :
+                  lookup(policy, "resource", resource) == "applications"
+                  ? "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${var.name}/${obj}, allow"
+                  : "p, proj:${var.name}:${role_name}, ${lookup(policy, "resource", resource)}, ${action}, ${obj}, allow"
+                ]
               ]
-            ]
-          ]),
-          groups = lookup(var.role_groups, role_name, [])
-        }
-      ]
+            ]),
+            groups = lookup(var.role_groups, role_name, [])
+          }
+        ]
+      ])
     }
   }
 
