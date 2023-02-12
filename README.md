@@ -13,19 +13,16 @@ No requirements.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_argocd"></a> [argocd](#module\_argocd) | ./namespace | n/a |
-| <a name="module_config"></a> [config](#module\_config) | Invicton-Labs/deepmerge/null | n/a |
-| <a name="module_release_0"></a> [release\_0](#module\_release\_0) | ./release | n/a |
-| <a name="module_release_1"></a> [release\_1](#module\_release\_1) | ./release | n/a |
-| <a name="module_release_2"></a> [release\_2](#module\_release\_2) | ./release | n/a |
-| <a name="module_release_3"></a> [release\_3](#module\_release\_3) | ./release | n/a |
-| <a name="module_release_4"></a> [release\_4](#module\_release\_4) | ./release | n/a |
-| <a name="module_release_5"></a> [release\_5](#module\_release\_5) | ./release | n/a |
-| <a name="module_release_6"></a> [release\_6](#module\_release\_6) | ./release | n/a |
-| <a name="module_release_7"></a> [release\_7](#module\_release\_7) | ./release | n/a |
-| <a name="module_release_8"></a> [release\_8](#module\_release\_8) | ./release | n/a |
-| <a name="module_release_9"></a> [release\_9](#module\_release\_9) | ./release | n/a |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | Invicton-Labs/deepmerge/null | n/a |
-| <a name="module_variables"></a> [variables](#module\_variables) | Invicton-Labs/deepmerge/null | n/a |
+| <a name="module_project_0"></a> [project\_0](#module\_project\_0) | ./project | n/a |
+| <a name="module_project_1"></a> [project\_1](#module\_project\_1) | ./project | n/a |
+| <a name="module_project_2"></a> [project\_2](#module\_project\_2) | ./project | n/a |
+| <a name="module_project_3"></a> [project\_3](#module\_project\_3) | ./project | n/a |
+| <a name="module_project_4"></a> [project\_4](#module\_project\_4) | ./project | n/a |
+| <a name="module_project_5"></a> [project\_5](#module\_project\_5) | ./project | n/a |
+| <a name="module_project_6"></a> [project\_6](#module\_project\_6) | ./project | n/a |
+| <a name="module_project_7"></a> [project\_7](#module\_project\_7) | ./project | n/a |
+| <a name="module_project_8"></a> [project\_8](#module\_project\_8) | ./project | n/a |
+| <a name="module_project_9"></a> [project\_9](#module\_project\_9) | ./project | n/a |
 
 ## Resources
 
@@ -37,18 +34,17 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_argocd_config_path"></a> [argocd\_config\_path](#input\_argocd\_config\_path) | ArgoCD configuration path | `string` | n/a | yes |
 | <a name="input_argocd_version"></a> [argocd\_version](#input\_argocd\_version) | ArgoCD Helm chart version | `string` | `"5.19.4"` | no |
-| <a name="input_config_directory"></a> [config\_directory](#input\_config\_directory) | Configuration directory containing merged config map definitions with format: namespace(map):name(map):config(map) | `string` | `"config"` | no |
-| <a name="input_config_path"></a> [config\_path](#input\_config\_path) | Base application configuration path | `string` | n/a | yes |
 | <a name="input_default_chart"></a> [default\_chart](#input\_default\_chart) | Default ArgoCD application Helm chart from Helm repository | `string` | `"application"` | no |
 | <a name="input_default_path"></a> [default\_path](#input\_default\_path) | Default ArgoCD application Helm chart from Git repository path | `string` | `null` | no |
 | <a name="input_default_repository"></a> [default\_repository](#input\_default\_repository) | Default ArgoCD application repository (Git or Helm) | `string` | `"https://charts.zimagi.com"` | no |
 | <a name="input_default_version"></a> [default\_version](#input\_default\_version) | Default ArgoCD application Helm chart version from Helm repository | `string` | `"0.0.1"` | no |
 | <a name="input_domain"></a> [domain](#input\_domain) | Platform domain | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Platform Environment | `string` | n/a | yes |
-| <a name="input_groups"></a> [groups](#input\_groups) | Ordered collections of ArgoCD Application configurations (up to 10 groups supported) | `list` | n/a | yes |
-| <a name="input_secrets_directory"></a> [secrets\_directory](#input\_secrets\_directory) | Secrets directory containing merged secrets definitions with format: namespace(map):name(map):config(map) | `string` | `"secrets"` | no |
-| <a name="input_values_directory"></a> [values\_directory](#input\_values\_directory) | Helm values directory within the base application configuration path (config\_path) | `string` | `"values"` | no |
+| <a name="input_project_path"></a> [project\_path](#input\_project\_path) | Base project configuration path | `string` | n/a | yes |
+| <a name="input_project_sequence"></a> [project\_sequence](#input\_project\_sequence) | Ordered collections of ArgoCD Application projects (up to 10 projects supported) | `list` | n/a | yes |
+| <a name="input_role_groups"></a> [role\_groups](#input\_role\_groups) | ArgoCD Role group membership index | `map(list(string))` | `{}` | no |
 | <a name="input_variables"></a> [variables](#input\_variables) | ArgoCD Application interpolation variables | `any` | `{}` | no |
 
 ## Outputs
