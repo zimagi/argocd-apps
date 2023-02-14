@@ -6,6 +6,7 @@ variable "name" {
 variable "exists" {
   description = "If Kubernetes namespace already exists (only create secrets and config maps)"
   type        = bool
+  default     = false
 }
 
 variable "path" {
