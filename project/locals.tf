@@ -7,11 +7,13 @@ locals {
     for file in fileset(var.project_path, "*/info.yaml") :
     dirname("${var.project_path}/${file}") => yamldecode(templatefile("${var.project_path}/${file}", var.variables))
   }
-}
 
-locals {
+  enabled_applications = {
+    for path, config in local.applications : path => config if lookup(config, "enabled", false)
+  }
+
   roles = {
-    for path, config in local.applications :
+    for path, config in local.enabled_applications :
     config.name => fileexists("${path}/roles.yaml")
     ? yamldecode(templatefile("${path}/roles.yaml", var.variables))
     : null
@@ -93,7 +95,7 @@ locals {
   # ArgoCD Application
   #
   application_manifests = {
-    for path, config in local.applications :
+    for path, config in local.enabled_applications :
     config.name => {
       apiVersion = "argoproj.io/v1alpha1"
       kind       = "Application"

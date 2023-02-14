@@ -3,6 +3,11 @@ variable "name" {
   description = "Kubernetes namespace name"
   type        = string
 }
+variable "exists" {
+  description = "If Kubernetes namespace already exists (only create secrets and config maps)"
+  type        = bool
+}
+
 variable "path" {
   description = "Project path that contains secrets and config files"
   type        = string

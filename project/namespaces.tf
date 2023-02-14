@@ -1,10 +1,12 @@
 
 module "namespace" {
-  for_each = local.applications
+  for_each = local.enabled_applications
 
   source = "../namespace"
 
-  name      = lookup(each.value, "namespace", each.value.name)
+  name   = lookup(each.value, "namespace", each.value.name)
+  exists = lookup(each.value, "namespace_exists", false)
+
   path      = each.key
   variables = var.variables
 }
