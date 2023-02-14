@@ -148,7 +148,7 @@ locals {
 
         destination = {
           server    = lookup(config, "destination_server", var.destination_server)
-          namespace = config.name
+          namespace = lookup(config, "namespace", config.name)
         }
       }
     }
