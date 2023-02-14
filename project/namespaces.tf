@@ -1,6 +1,6 @@
 
 module "namespace" {
-  for_each = try(nonsensitive(local.enabled_applications), local.enabled_appliciations)
+  for_each = try(nonsensitive(local.enabled_applications), local.enabled_applications)
 
   source = "../namespace"
 

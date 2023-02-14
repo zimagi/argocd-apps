@@ -1,6 +1,6 @@
 
 resource "kubectl_manifest" "application" {
-  for_each = try(nonsensitive(local.enabled_applications), local.enabled_appliciations)
+  for_each = try(nonsensitive(local.enabled_applications), local.enabled_applications)
 
   validate_schema  = true
   wait_for_rollout = true
