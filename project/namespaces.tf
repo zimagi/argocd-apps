@@ -9,4 +9,7 @@ module "namespace" {
 
   path      = each.key
   variables = var.variables
+
+  labels      = merge(var.labels, lookup(each.value, "labels", {}))
+  annotations = merge(var.annotations, lookup(each.value, "annotations", {}))
 }
