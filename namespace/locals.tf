@@ -22,7 +22,9 @@ locals {
     file(local.config_path)
   ) : null
 
-  config_full = yamldecode(templatefile(local.config_path, var.variables))
+  config_full = fileexists(local.config_path) ? yamldecode(
+    templatefile(local.config_path, var.variables)
+  ) : null
 
   config = fileexists(local.config_path) ? try(
     nonsensitive(local.config_full),
