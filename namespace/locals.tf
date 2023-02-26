@@ -2,8 +2,8 @@
 locals {
   secrets_path = "${var.path}/secrets.yaml"
 
-  secrets_raw = fileexists(local.secrets_path) ? sensitive(
-    yamldecode(file(local.secrets_path))
+  secrets_raw = fileexists(local.secrets_path) ? yamldecode(
+    file(local.secrets_path)
   ) : null
 
   secrets = fileexists(local.secrets_path) ? sensitive(
@@ -18,12 +18,15 @@ locals {
 locals {
   config_path = "${var.path}/config.yaml"
 
-  config_raw = fileexists(local.config_path) ? nonsensitive(
-    yamldecode(file(local.config_path))
+  config_raw = fileexists(local.config_path) ? yamldecode(
+    file(local.config_path)
   ) : null
 
-  config = fileexists(local.config_path) ? nonsensitive(
-    yamldecode(templatefile(local.config_path, var.variables))
+  config_full = yamldecode(templatefile(local.config_path, var.variables))
+
+  config = fileexists(local.config_path) ? try(
+    nonsensitive(local.config_full),
+    local.config_full
   ) : null
 
   config_names = toset(local.config_raw != null ? [
