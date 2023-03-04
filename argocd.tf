@@ -18,7 +18,9 @@ resource "helm_release" "argocd" {
   dependency_update = true
   reuse_values      = false
   create_namespace  = false
-  wait_for_jobs     = true
+
+  wait          = true
+  wait_for_jobs = true
 
   values = fileexists(local.argocd_values_file) ? [
     nonsensitive(templatefile(local.argocd_values_file, local.variables))

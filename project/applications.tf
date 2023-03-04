@@ -15,3 +15,11 @@ resource "kubectl_manifest" "application" {
     kubectl_manifest.project
   ]
 }
+
+resource "time_sleep" "wait_30_seconds" {
+  create_duration = "30s"
+
+  depends_on = [
+    kubectl_manifest.application
+  ]
+}
