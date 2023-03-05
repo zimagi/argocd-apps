@@ -65,5 +65,5 @@ variable "default_path" {
 variable "default_version" {
   type        = string
   description = "Default ArgoCD application Helm chart version from Helm repository"
-  default     = "1.0.11"
+  default     = "1.0.12"
 }
