@@ -7,6 +7,10 @@ variable "project_path" {
   description = "Project configuration path"
   type        = string
 }
+variable "config_path" {
+  description = "Project configuration and secret additions path (non-versioned)"
+  type        = string
+}
 
 variable "variables" {
   description = "ArgoCD Application interpolation variables"
