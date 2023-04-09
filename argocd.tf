@@ -2,9 +2,11 @@
 module "argocd" {
   source = "./namespace"
 
-  name      = local.argocd_name
-  path      = var.argocd_config_path
-  variables = local.variables
+  name        = local.argocd_name
+  application = local.argocd_name
+  path        = var.argocd_config_path
+  config_path = var.config_path
+  variables   = local.variables
 }
 
 resource "helm_release" "argocd" {
