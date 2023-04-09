@@ -9,6 +9,7 @@ module "project_0" {
   source       = "./project"
   name         = var.project_sequence[0]
   project_path = "${var.project_path}/${var.project_sequence[0]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
@@ -30,6 +31,7 @@ module "project_1" {
   source       = "./project"
   name         = var.project_sequence[1]
   project_path = "${var.project_path}/${var.project_sequence[1]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
@@ -51,6 +53,7 @@ module "project_2" {
   source       = "./project"
   name         = var.project_sequence[2]
   project_path = "${var.project_path}/${var.project_sequence[2]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
@@ -72,6 +75,7 @@ module "project_3" {
   source       = "./project"
   name         = var.project_sequence[3]
   project_path = "${var.project_path}/${var.project_sequence[3]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
@@ -93,6 +97,7 @@ module "project_4" {
   source       = "./project"
   name         = var.project_sequence[4]
   project_path = "${var.project_path}/${var.project_sequence[4]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
@@ -114,6 +119,7 @@ module "project_5" {
   source       = "./project"
   name         = var.project_sequence[5]
   project_path = "${var.project_path}/${var.project_sequence[5]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
@@ -135,6 +141,7 @@ module "project_6" {
   source       = "./project"
   name         = var.project_sequence[6]
   project_path = "${var.project_path}/${var.project_sequence[6]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
@@ -156,6 +163,7 @@ module "project_7" {
   source       = "./project"
   name         = var.project_sequence[7]
   project_path = "${var.project_path}/${var.project_sequence[7]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
@@ -177,6 +185,7 @@ module "project_8" {
   source       = "./project"
   name         = var.project_sequence[8]
   project_path = "${var.project_path}/${var.project_sequence[8]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
@@ -198,6 +207,7 @@ module "project_9" {
   source       = "./project"
   name         = var.project_sequence[9]
   project_path = "${var.project_path}/${var.project_sequence[9]}"
+  config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
 
