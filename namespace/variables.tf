@@ -9,8 +9,17 @@ variable "exists" {
   default     = false
 }
 
+variable "application" {
+  description = "Kubernetes ArgoCD application name"
+  type        = string
+}
+
 variable "path" {
   description = "Project path that contains secrets and config files"
+  type        = string
+}
+variable "config_path" {
+  description = "Project configuration and secret additions path (non-versioned)"
   type        = string
 }
 
