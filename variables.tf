@@ -36,7 +36,7 @@ variable "config_path" { # Local directory
 
 variable "project_sequence" {
   description = "Ordered collections of ArgoCD Application projects (up to 10 projects supported)"
-  type        = list
+  type        = list(any)
 }
 
 variable "role_groups" {

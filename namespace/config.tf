@@ -3,8 +3,8 @@ resource "kubernetes_config_map" "config" {
   for_each = try(nonsensitive(local.config_names), local.config_names)
 
   metadata {
-    name        = each.value
-    namespace   = var.name
+    name      = each.value
+    namespace = var.name
 
     labels = merge(
       local.config != null ? (lookup(local.config, each.value, null) != null ? lookup(local.config[each.value], "labels", null) : null) : null,

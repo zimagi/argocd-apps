@@ -71,7 +71,7 @@ locals {
             groups = lookup(var.role_groups, role_name, [])
           }
         ]
-      ], [
+        ], [
         for role_name, config in coalesce(var.global_roles, {}) : {
           name        = role_name,
           description = config.description,
@@ -120,6 +120,7 @@ locals {
           }
           syncOptions = concat(lookup(config, "sync_options", var.sync_options), [
             lookup(config, "sync_validate", var.sync_validate) ? "Validate=true" : "Validate=false",
+            lookup(config, "sync_replace", var.sync_replace) ? "Validate=Replace" : "Replace=false",
             "CreateNamespace=false"
           ])
           retry = {
