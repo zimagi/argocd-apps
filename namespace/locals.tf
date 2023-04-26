@@ -49,13 +49,13 @@ locals {
   config_names = setunion(toset(local.core_config_names), toset(local.extra_config_names))
 
   config_full = fileexists(local.config_path) ? yamldecode(templatefile(local.config_path, var.variables)) : null
-  config      = local.config_full != null ? try(
+  config = local.config_full != null ? try(
     nonsensitive(local.config_full),
     local.config_full
   ) : null
 
   extra_config_full = fileexists(local.extra_config_path) ? yamldecode(templatefile(nonsensitive(local.extra_config_path), var.variables)) : null
-  extra_config      = local.extra_config_full != null ? try(
+  extra_config = local.extra_config_full != null ? try(
     nonsensitive(local.extra_config_full),
     local.extra_config_full
   ) : null

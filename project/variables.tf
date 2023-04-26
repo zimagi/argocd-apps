@@ -42,12 +42,12 @@ variable "role_groups" {
 
 variable "labels" {
   description = "ArgoCD Project and Application common labels"
-  type        = map
+  type        = map(any)
   default     = {}
 }
 variable "annotations" {
   description = "ArgoCD Project and Application common annotations"
-  type        = map
+  type        = map(any)
   default     = {}
 }
 
@@ -91,6 +91,12 @@ variable "sync_options" {
 variable "sync_validate" {
   type        = bool
   description = "Disables resource validation (equivalent to 'kubectl apply --validate=true')"
+  default     = false
+}
+
+variable "sync_replace" {
+  type        = bool
+  description = "If the Replace=true sync option is set the Argo CD will use kubectl replace or kubectl create command to apply changes."
   default     = false
 }
 
