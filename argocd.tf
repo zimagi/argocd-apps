@@ -1,6 +1,6 @@
 
 module "argocd" {
-  source = "./namespace"
+  source = "./modules/namespace"
 
   name        = local.argocd_name
   application = local.argocd_name
