@@ -56,12 +56,13 @@ variable "variables" {
 
 variable "ingress_version" {
   description = "Version of nginx ingress controller chart."
-  type = string
-  default = "9.9.0"
+  type        = string
+  default     = "9.9.0"
 }
 
 variable "ingress_config_path" {
   description = "Ingress configuration path."
+  type        = string
 }
 
 #

@@ -13,7 +13,7 @@ resource "helm_release" "ingress" {
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "nginx-ingress-controller"
   version    = var.ingress_version
-  namespace  = local.argocd_name
+  namespace  = local.ingress_name
 
   force_update      = true
   dependency_update = true
