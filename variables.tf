@@ -51,6 +51,20 @@ variable "variables" {
 }
 
 #
+# Ingress variables
+#
+
+variable "ingress_name" {
+  description = "Version of nginx ingress controller chart."
+  type = string
+  default = "9.9.0"
+}
+
+variable "ingress_config_path" {
+  description = "Ingress configuration path."
+}
+
+#
 # Application variables
 #
 variable "default_repository" {
