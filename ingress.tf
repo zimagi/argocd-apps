@@ -1,4 +1,4 @@
-module "argocd" {
+module "ingress_namespace" {
   source = "./modules/namespace"
 
   name        = local.ingress_name
@@ -8,7 +8,7 @@ module "argocd" {
   variables   = local.variables
 }
 
-resource "helm_release" "argocd" {
+resource "helm_release" "ingress" {
   name       = local.ingress_name
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "nginx-ingress-controller"
