@@ -1,11 +1,8 @@
 
 locals {
-  argocd_name         = "argocd"
-  argocd_values_file  = "${var.argocd_config_path}/values.yaml"
-  argocd_roles_file   = "${var.argocd_config_path}/roles.yaml"
-  ingress_name        = "nginx-ingress-interface-controller"
-  ingress_values_file = "${var.ingress_config_path}/values.yaml"
-  ingress_roles_file  = "${var.ingress_config_path}/roles.yaml"
+  argocd_name        = "argocd"
+  argocd_values_file = "${var.argocd_config_path}/values.yaml"
+  argocd_roles_file  = "${var.argocd_config_path}/roles.yaml"
 }
 
 locals {
