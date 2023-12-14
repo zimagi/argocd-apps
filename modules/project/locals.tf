@@ -142,6 +142,7 @@ locals {
           helm = {
             releaseName     = lookup(config, "release", config.name)
             passCredentials = lookup(config, "pass_credentials", false)
+            skipCrds = lookup(config, "skipCrds", false)
             values = fileexists("${path}/values.yaml") ? try(
               nonsensitive(templatefile("${path}/values.yaml", var.variables)),
               templatefile("${path}/values.yaml", var.variables)
