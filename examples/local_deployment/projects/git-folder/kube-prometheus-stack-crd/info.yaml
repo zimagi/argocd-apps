@@ -1,0 +1,10 @@
+enabled: true
+
+name: kube-prometheus-stack-crd
+repository: "https://github.com/prometheus-community/helm-charts.git"
+path: "charts/kube-prometheus-stack/charts/crds/crds"
+version: "kube-prometheus-stack-55.5.0"
+
+sync_replace: true
+sync_rerver_side_apply: true
+self_heal: true

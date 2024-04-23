@@ -120,7 +120,8 @@ locals {
           }
           syncOptions = concat(lookup(config, "sync_options", var.sync_options), [
             lookup(config, "sync_validate", var.sync_validate) ? "Validate=true" : "Validate=false",
-            lookup(config, "sync_replace", var.sync_replace) ? "Validate=Replace" : "Replace=false",
+            lookup(config, "sync_replace", var.sync_replace) ? "Replace=true" : "Replace=false",
+            lookup(config, "sync_rerver_side_apply", false) ? "ServerSideApply=true" : "ServerSideApply=false",
             "CreateNamespace=false"
           ])
           retry = {
@@ -135,18 +136,19 @@ locals {
 
         source = {
           repoURL        = lookup(config, "repository", var.default_repository)
-          chart          = lookup(config, "chart", var.default_chart) # Helm Repository only
+          chart          = lookup(config, "chart", null) # Helm Repository only
           path           = lookup(config, "path", var.default_path)   # Git Repository only
           targetRevision = lookup(config, "version", var.default_version)
 
-          helm = {
+          helm = lookup(config, "chart", null) != null ? {
             releaseName     = lookup(config, "release", config.name)
             passCredentials = lookup(config, "pass_credentials", false)
+            skipCrds = lookup(config, "skipCrds", false)
             values = fileexists("${path}/values.yaml") ? try(
               nonsensitive(templatefile("${path}/values.yaml", var.variables)),
               templatefile("${path}/values.yaml", var.variables)
             ) : ""
-          }
+          } : null
         }
 
         destination = {
