@@ -71,12 +71,12 @@ variable "revision_history_limit" {
 variable "prune" {
   type        = bool
   description = "Specifies if resources should be pruned during auto-syncing"
-  default     = false
+  default     = true
 }
 variable "self_heal" {
   type        = bool
   description = "Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected"
-  default     = false
+  default     = true
 }
 variable "allow_empty" {
   type        = bool
