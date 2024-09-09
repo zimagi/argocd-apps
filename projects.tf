@@ -1,5 +1,7 @@
 #
-# This is not a great solution but Terraform doesn't support dependency chaining within resource blocks for concurrency reasons
+# This is not a great solution but Terraform doesn't support
+# dependency chaining within resource blocks for concurrency
+# reasons
 #
 # Support up to 10 deployment stages (which should be plenty)
 #
