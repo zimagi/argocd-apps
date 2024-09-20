@@ -8,12 +8,6 @@ module "kubernetes_apps" {
   argocd_config_path = "${var.project_path}/argocd"
   project_path       = "${var.project_path}/projects"
 
-  project_sequence = [
-    "system",
-    "platform",
-    "database",
-    "management"
-  ]
-
-  variables = local.variables
+  project_sequence = var.argocd_project_sequence
+  variables        = local.variables
 }

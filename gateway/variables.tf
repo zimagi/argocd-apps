@@ -30,6 +30,16 @@ variable "argocd_admin_password" {
   description = "ArgoCD administrator password (bcrypt hash)"
   type        = string
 }
+variable "argocd_project_sequence" {
+  description = "ArgoCD provisioner project sequence"
+  type        = list(string)
+  default = [
+    "system",
+    "platform",
+    "database",
+    "management"
+  ]
+}
 
 #
 # Application variables (reactor generated)
