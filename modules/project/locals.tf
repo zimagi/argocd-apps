@@ -9,7 +9,7 @@ locals {
   }
 
   enabled_applications = {
-    for path, config in local.applications : path => config if lookup(config, "enabled", false)
+    for path, config in local.applications : path => config if contains(lookup(config, "enabled", ["noenv"]), var.variables.environment)
   }
 
   roles = {
