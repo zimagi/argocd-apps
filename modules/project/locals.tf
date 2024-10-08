@@ -9,7 +9,9 @@ locals {
   }
 
   enabled_applications = {
-    for path, config in local.applications : path => config if contains(lookup(config, "enabled", ["noenv"]), var.variables.environment)
+    for path, config in local.applications : path => config
+    if contains(lookup(config, "enabled", []), "all")
+    || contains(lookup(config, "enabled", []), var.variables.environment)
   }
 
   roles = {
@@ -136,15 +138,18 @@ locals {
 
         source = {
           repoURL        = lookup(config, "repository", var.default_repository)
-          chart          = lookup(config, "chart", null) # Helm Repository only
-          path           = lookup(config, "path", var.default_path)   # Git Repository only
+          chart          = lookup(config, "chart", null)            # Helm Repository only
+          path           = lookup(config, "path", var.default_path) # Git Repository only
           targetRevision = lookup(config, "version", var.default_version)
 
           helm = lookup(config, "chart", null) != null ? {
             releaseName     = lookup(config, "release", config.name)
             passCredentials = lookup(config, "pass_credentials", false)
-            skipCrds = lookup(config, "skipCrds", false)
-            values = fileexists("${path}/values.yaml") ? try(
+            skipCrds        = lookup(config, "skipCrds", false)
+            values = fileexists("${path}/values.${var.variables.environment}.yaml") ? try(
+              nonsensitive(templatefile("${path}/values.${var.variables.environment}.yaml", var.variables)),
+              templatefile("${path}/values.${var.variables.environment}.yaml", var.variables)
+              ) : fileexists("${path}/values.yaml") ? try(
               nonsensitive(templatefile("${path}/values.yaml", var.variables)),
               templatefile("${path}/values.yaml", var.variables)
             ) : ""
