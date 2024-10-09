@@ -1,4 +1,4 @@
-enabled: true
+enabled: ["dev", "prod"]
 
 name: kube-prometheus-stack-crd
 repository: "https://github.com/prometheus-community/helm-charts.git"
