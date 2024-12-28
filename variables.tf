@@ -39,6 +39,12 @@ variable "project_sequence" {
   type        = list(any)
 }
 
+variable "project_wait" {
+  type        = string
+  description = "The maximum amount of time allowed for project initialization"
+  default     = "30s"
+}
+
 variable "role_groups" {
   type        = map(list(string))
   description = "ArgoCD Role group membership index"

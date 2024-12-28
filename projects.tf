@@ -11,6 +11,7 @@ module "project_0" {
   source       = "./modules/project"
   name         = var.project_sequence[0]
   project_path = "${var.project_path}/${var.project_sequence[0]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
@@ -33,6 +34,7 @@ module "project_1" {
   source       = "./modules/project"
   name         = var.project_sequence[1]
   project_path = "${var.project_path}/${var.project_sequence[1]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
@@ -55,6 +57,7 @@ module "project_2" {
   source       = "./modules/project"
   name         = var.project_sequence[2]
   project_path = "${var.project_path}/${var.project_sequence[2]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
@@ -77,6 +80,7 @@ module "project_3" {
   source       = "./modules/project"
   name         = var.project_sequence[3]
   project_path = "${var.project_path}/${var.project_sequence[3]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
@@ -99,6 +103,7 @@ module "project_4" {
   source       = "./modules/project"
   name         = var.project_sequence[4]
   project_path = "${var.project_path}/${var.project_sequence[4]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
@@ -121,6 +126,7 @@ module "project_5" {
   source       = "./modules/project"
   name         = var.project_sequence[5]
   project_path = "${var.project_path}/${var.project_sequence[5]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
@@ -143,6 +149,7 @@ module "project_6" {
   source       = "./modules/project"
   name         = var.project_sequence[6]
   project_path = "${var.project_path}/${var.project_sequence[6]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
@@ -165,6 +172,7 @@ module "project_7" {
   source       = "./modules/project"
   name         = var.project_sequence[7]
   project_path = "${var.project_path}/${var.project_sequence[7]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
@@ -187,6 +195,7 @@ module "project_8" {
   source       = "./modules/project"
   name         = var.project_sequence[8]
   project_path = "${var.project_path}/${var.project_sequence[8]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
@@ -209,6 +218,7 @@ module "project_9" {
   source       = "./modules/project"
   name         = var.project_sequence[9]
   project_path = "${var.project_path}/${var.project_sequence[9]}"
+  project_wait = var.project_wait
   config_path  = var.config_path
   global_roles = local.global_roles
   role_groups  = var.role_groups
