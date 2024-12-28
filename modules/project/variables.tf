@@ -121,6 +121,12 @@ variable "retry_backoff_max_duration" {
   default     = "3m"
 }
 
+variable "project_wait" {
+  type        = string
+  description = "The maximum amount of time allowed for project initialization"
+  default     = "30s"
+}
+
 variable "destination_server" {
   type        = string
   description = "Destination cluster server url"
